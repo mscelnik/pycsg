@@ -9,13 +9,13 @@ from csg.geom import Vector
 
 class TestCSG(unittest.TestCase):
     def setUp(self):
-        print 'setup'
-    
+        print('setup')
+
     def tearDown(self):
-        print 'tear'
-    
+        print('tear')
+
     def test_cs(self):
-        print 'ss'
+        print('ss')
 
     def test_toPolygons(self):
         a = CSG.cube([0.5, 0.5, 0.0])
@@ -40,7 +40,7 @@ class TestCSG(unittest.TestCase):
     def test_sphere(self):
         a = CSG.sphere(center=[0., 0., 0.], radius=1., slices=4, stacks=3)
         a.saveVTK('test_sphere.vtk')
-        
+
     def test_cube_intersect(self):
         a = CSG.cube()
         b = CSG.cube([0.5, 0.5, 0.0])
@@ -69,7 +69,7 @@ class TestCSG(unittest.TestCase):
         c.saveVTK('test_cube_subtract.vtk')
 
     def test_sphere_cylinder_intersect(self):
-        a = CSG.sphere(center=[0.5, 0.5, 0.5], radius=0.5, slices=8, stacks=4)
+        a = CSG.sphere(center=[0.5, 0.5, 0.0], radius=1.0, slices=8, stacks=4)
         b = CSG.cylinder(start=[0.,0.,0.], end=[1.,0.,0.], radius=0.3, slices=16)
         a.intersect(b).saveVTK('test_sphere_cylinder_intersect.vtk')
 
@@ -114,6 +114,6 @@ class TestCSG(unittest.TestCase):
         b.saveVTK('b.vtk')
         b.rotate(axis=[0.1, 0.2, 0.3], angleDeg=20.0)
         b.saveVTK('bRotated.vtk')
-        
+
 if __name__ == '__main__':
     unittest.main()

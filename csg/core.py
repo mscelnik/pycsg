@@ -103,15 +103,14 @@ class CSG(object):
             vA = v.dot(ax)
             vPerp = v.minus(ax.times(vA))
             vPerpLen = vPerp.length()
-            if vPerpLen > 0:
-                u1 = vPerp.unit()
-                u2 = u1.cross(ax)
-                vCosA = vPerpLen*cosAngle
-                vSinA = vPerpLen*sinAngle
-                return ax.times(vA).plus(u1.times(vCosA).plus(u2.times(vSinA)))
-            else:
-                # zero distance to axis, no need to rotate
-                return v
+            if vPerpLen == 0:
+                # vector is parallel to axis, no need to rotate
+		        return v
+            u1 = vPerp.unit()
+            u2 = u1.cross(ax)
+            vCosA = vPerpLen*cosAngle
+            vSinA = vPerpLen*sinAngle
+            return ax.times(vA).plus(u1.times(vCosA).plus(u2.times(vSinA)))
 
         for poly in self.polygons:
             for vert in poly.vertices:
